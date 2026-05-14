@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--p:#2baacc;--bg:#93979a;--chat-bg:#f7fafc;--bot-bg:#426880;--bot-text:#f7f9fc;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
+:root{--p:#2baacc;--bg:#eef4f7;--chat-bg:#f7fafc;--bot-bg:#5d6ea2;--bot-text:#f4f6fb;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
 html,body{min-height:100%;font-family:Inter,sans-serif;background:var(--bg);color:var(--dark)}
 html,body{height:100%;overflow:hidden}
 body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;height:100%;overflow:hidden}
@@ -61,7 +61,7 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:cente
   </div>
 </div>
 <div class="powered">Powered by <strong>Dogo Digital 24</strong></div>
-<script type="application/json" id="chatbot-config">{"key":"QUl6YVN5QTVLaTR4aGNIc0JLa2FfUzdleHYydENTSFB4dmJfM1R3","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","sp":"Respondé siempre en español, de forma amigable y concisa. Usá solo la información del documento proporcionado.","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec","clr":{"bg":"#93979a","chatBg":"#f7fafc","userBg":"#2baacc","userText":"#ffffff","botBg":"#426880","botText":"#f7f9fc"}}</script>
+<script type="application/json" id="chatbot-config">{"key":"c2stcHJvai1tcTU2NlRqVS1Oa29YTzFTNlE2a2RTbkFOVVZXTHpLWE95VGVyNU5LU3FidUhTc2hjbDVvaWl6N3E4T0NnRTdHSDFLUEVGZW5CcVQzQmxia0ZKb0N1bzFlSlAyQ21MdFJyQUtQRzZFZjVxYkpJWlZCcFJjUHVFb2xaR3V2Mjk5LWRzd1NRUVJ6NURMMWhwT1hnM0pqSzN0NmZOQUE=","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","sp":"Respondé siempre en español, de forma amigable y concisa. Usá solo la información del documento proporcionado.","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec","clr":{"bg":"#eef4f7","chatBg":"#f7fafc","userBg":"#2baacc","userText":"#ffffff","botBg":"#5d6ea2","botText":"#f4f6fb"}}</script>
 <script>
 var _C=JSON.parse(document.getElementById('chatbot-config').textContent);
 var GKEY=decodeURIComponent(escape(atob(_C.key)));
@@ -75,7 +75,6 @@ async function loadDoc(){
     if(!r.ok){console.warn('Doc error:',r.status);return;}
     docContent=await r.text();
     console.log('Doc loaded:',docContent.length,'chars');
-    console.log('Doc preview (first 500):',docContent.substring(0,500));
   }catch(e){
     console.warn('Doc fetch failed:',e.message);
     var statusEl=document.getElementById('doc-status');
@@ -84,27 +83,25 @@ async function loadDoc(){
 }
 
 function buildSystem(){
-  var doc = docContent ? '=== INFORMACIÓN DEL NEGOCIO ===\n' + docContent + '\n=== FIN INFORMACIÓN ===' : '';
-  var contact = _C.contact ? '\nDATOS DE CONTACTO DEL NEGOCIO:\n' + _C.contact : '';
-  var prompt = [
-    'Sos el asistente virtual de ' + _C.bizName + '. ' + _C.sp,
+  var doc=docContent ? '=== INFORMACIÓN DEL NEGOCIO ===\n'+docContent+'\n=== FIN INFORMACIÓN ==' : '';
+  var contact=_C.contact ? '\nDATOS DE CONTACTO DEL NEGOCIO:\n'+_C.contact : '';
+  var prompt=[
+    'Sos el asistente virtual de '+_C.bizName+'. '+_C.sp,
     doc,
     contact,
     'REGLAS:',
     '- Respondé SIEMPRE basándote en la información del negocio que está arriba.',
     '- Si la información está en el documento, usala para responder.',
-    '- Si realmente no tenés el dato, decí exactamente: "En este caso, puede ayudarte mejor nuestro equipo." y ofrecé los datos de contacto.',
+    '- Si realmente no tenés el dato, decí exactamente: puede ayudarte mejor nuestro equipo. y ofrecé los datos de contacto.',
     '- NUNCA menciones documentos ni fuentes al responder.',
     '- Texto plano sin markdown. Sin asteriscos ni guiones para listas.',
-    '- Cuando listes ítems usá bullets con • (ejemplo: • Servicio 1).',
+    '- Cuando listes ítems usá bullets con el símbolo • (ejemplo: • Servicio 1).',
     '- Podés usar emojis.',
     '- No termines con preguntas de seguimiento.',
     '- Respondé en español, de forma amigable y concisa.'
   ].join('\n');
   return prompt;
 }
-
-function now(){return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});}
 
 function addMsg(role,text){
   hist.push({role:role,content:text});
@@ -154,15 +151,11 @@ function sendMsg(){
 async function doSend(txt){
   addMsg('user',txt);
   busy=true;document.getElementById('sendbtn').disabled=true;showTyp();
-  var messages=hist.map(function(m){
-    return{role:m.role==='user'?'user':'model',parts:[{text:m.content}]};
+  var oaiMessages=[{role:'system',content:buildSystem()}];
+  hist.forEach(function(m){
+    oaiMessages.push({role:m.role==='bot'?'assistant':'user',content:m.content});
   });
-  var _sys=buildSystem();
-  console.log('SYSTEM PROMPT (first 1000):',_sys.substring(0,1000));
-  var allContents=[
-    {role:'user',parts:[{text:_sys}]},
-    {role:'model',parts:[{text:'Entendido.'}]}
-  ].concat(messages);
+  var allContents=oaiMessages;
   var maxRetries=3,attempt=0,done=false;
   while(!done){
     try{
@@ -170,13 +163,14 @@ async function doSend(txt){
         await new Promise(function(res){setTimeout(res,attempt*3000);});
       }
       var r=await fetch(
-        'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key='+GKEY,
-        {method:'POST',headers:{'Content-Type':'application/json'},
-         body:JSON.stringify({contents:allContents,generationConfig:{maxOutputTokens:800,temperature:0.7}})}
+        'https://api.openai.com/v1/chat/completions',
+        {method:'POST',
+         headers:{'Content-Type':'application/json','Authorization':'Bearer '+GKEY},
+         body:JSON.stringify({model:'gpt-4o-mini',max_tokens:800,temperature:0.7,messages:allContents})}
       );
       var d=await r.json();
-      var overload=d.error&&(d.error.code===503||d.error.code===429||
-        (d.error.message&&(d.error.message.indexOf('high demand')>-1||d.error.message.indexOf('quota')>-1)));
+      var overload=d.error&&(d.error.code===429||d.error.type==='insufficient_quota'||
+        (d.error.message&&d.error.message.indexOf('rate limit')>-1));
       if(overload&&attempt<maxRetries-1){attempt++;continue;}
       rmTyp();
       if(d.error){
@@ -190,12 +184,8 @@ async function doSend(txt){
         logUnanswered(txt);
         addMsg('bot',_fb);
       }else{
-        var parts=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts;
-        var reply=(parts&&parts[0]&&parts[0].text)||'No pude generar una respuesta.';
-        // Only log when Gemini uses the exact fallback phrase we instructed it to use
-        if(reply.indexOf('puede ayudarte mejor nuestro equipo')>-1){
-          logUnanswered(txt);
-        }
+        var reply=(d.choices&&d.choices[0]&&d.choices[0].message&&d.choices[0].message.content)||'No pude generar una respuesta.';
+        if(reply.indexOf('puede ayudarte mejor nuestro equipo')>-1){logUnanswered(txt);}
         addMsg('bot',reply);
       }
       scheduleFollowUp();
@@ -238,18 +228,11 @@ function logUnanswered(question){
     var now=new Date();
     var fecha=now.toLocaleDateString('es-AR');
     var hora=now.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-    var params='fecha='+encodeURIComponent(fecha)
-              +'&hora='+encodeURIComponent(hora)
-              +'&cliente='+encodeURIComponent(_C.bizName)
-              +'&pregunta='+encodeURIComponent(question);
-    var url=_C.sheets+'?'+params;
-    console.log('Logging unanswered question to:', url);
-    // Use Image beacon - guaranteed cross-origin, no CORS issues
-    var img=new Image();
-    img.onload=function(){ console.log('Log sent OK'); };
-    img.onerror=function(){ console.warn('Log request failed (image)'); };
-    img.src=url;
-  }catch(e){console.warn('Sheets log error:',e.message);}
+    var params='fecha='+encodeURIComponent(fecha)+'&hora='+encodeURIComponent(hora)+'&cliente='+encodeURIComponent(_C.bizName)+'&pregunta='+encodeURIComponent(question);
+    var xhr=new XMLHttpRequest();
+    xhr.open('GET',_C.sheets+'?'+params,true);
+    xhr.send();
+  }catch(e){}
 }
 
 loadDoc().then(function(){
