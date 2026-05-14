@@ -176,12 +176,8 @@ async function doSend(txt){
       }else{
         var parts=d.candidates&&d.candidates[0]&&d.candidates[0].content&&d.candidates[0].content.parts;
         var reply=(parts&&parts[0]&&parts[0].text)||'No pude generar una respuesta.';
-        // If the reply contains the fallback contact message, log as unanswered
-        if(reply.indexOf('puede ayudarte mejor nuestro equipo')>-1 ||
-           reply.indexOf('no tengo esa inform')>-1 ||
-           reply.indexOf('no tengo ese dato')>-1 ||
-           reply.indexOf('no cuento con esa')>-1 ||
-           reply.indexOf('no dispongo de')>-1){
+        // Only log when Gemini uses the exact fallback phrase we instructed it to use
+        if(reply.indexOf('puede ayudarte mejor nuestro equipo')>-1){
           logUnanswered(txt);
         }
         addMsg('bot',reply);
