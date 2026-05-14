@@ -75,6 +75,7 @@ async function loadDoc(){
     if(!r.ok){console.warn('Doc error:',r.status);return;}
     docContent=await r.text();
     console.log('Doc loaded:',docContent.length,'chars');
+    console.log('Doc preview (first 500):',docContent.substring(0,500));
   }catch(e){
     console.warn('Doc fetch failed:',e.message);
     var statusEl=document.getElementById('doc-status');
@@ -156,8 +157,10 @@ async function doSend(txt){
   var messages=hist.map(function(m){
     return{role:m.role==='user'?'user':'model',parts:[{text:m.content}]};
   });
+  var _sys=buildSystem();
+  console.log('SYSTEM PROMPT (first 1000):',_sys.substring(0,1000));
   var allContents=[
-    {role:'user',parts:[{text:buildSystem()}]},
+    {role:'user',parts:[{text:_sys}]},
     {role:'model',parts:[{text:'Entendido.'}]}
   ].concat(messages);
   var maxRetries=3,attempt=0,done=false;
