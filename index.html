@@ -83,11 +83,24 @@ async function loadDoc(){
 }
 
 function buildSystem(){
-  var contact=_C.contact?' DATOS DE CONTACTO: '+_C.contact:'';
-  var instr=' IMPORTANTE: Si no tenés la información exacta, NO menciones documentos. Ofrecé los datos de contacto del negocio. FORMATO: Respondé siempre en texto plano sin markdown. No uses asteriscos ni guiones para listas. Cuando listes ítems o servicios usá bullets con el símbolo • (por ejemplo: • Servicio 1). Podés usar emojis. Usá saltos de línea simples para separar ideas. NO termines tus respuestas con preguntas como ¿Te gustaría saber más? ni ¿Hay algo más en lo que pueda ayudarte?. Sé conciso y directo.';
-  var base=_C.sp+contact+instr;
-  if(docContent)base=base+' INFORMACIÓN DEL NEGOCIO: '+docContent;
-  return base;
+  var doc = docContent ? '=== INFORMACIÓN DEL NEGOCIO ===\n' + docContent + '\n=== FIN INFORMACIÓN ===' : '';
+  var contact = _C.contact ? '\nDATOS DE CONTACTO DEL NEGOCIO:\n' + _C.contact : '';
+  var prompt = [
+    'Sos el asistente virtual de ' + _C.bizName + '. ' + _C.sp,
+    doc,
+    contact,
+    'REGLAS:',
+    '- Respondé SIEMPRE basándote en la información del negocio que está arriba.',
+    '- Si la información está en el documento, usala para responder.',
+    '- Si realmente no tenés el dato, decí exactamente: "En este caso, puede ayudarte mejor nuestro equipo." y ofrecé los datos de contacto.',
+    '- NUNCA menciones documentos ni fuentes al responder.',
+    '- Texto plano sin markdown. Sin asteriscos ni guiones para listas.',
+    '- Cuando listes ítems usá bullets con • (ejemplo: • Servicio 1).',
+    '- Podés usar emojis.',
+    '- No termines con preguntas de seguimiento.',
+    '- Respondé en español, de forma amigable y concisa.'
+  ].join('\n');
+  return prompt;
 }
 
 function now(){return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});}
