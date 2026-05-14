@@ -7,10 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--p:#2baacc;--bg:#eef4f7;--dark:#2D3440;--muted:#8A95A3}
+:root{--p:#2baacc;--bg:#93979a;--chat-bg:#f7fafc;--bot-bg:#426880;--bot-text:#f7f9fc;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
 html,body{min-height:100%;font-family:Inter,sans-serif;background:var(--bg);color:var(--dark)}
-body{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem 1.5rem}
-.card{width:100%;max-width:440px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);display:flex;flex-direction:column}
+html,body{height:100%;overflow:hidden}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;height:100%;overflow:hidden}
+.card{width:100%;max-width:440px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);display:flex;flex-direction:column;height:100%}
 .hdr{padding:1.75rem 1.5rem 1.5rem;text-align:center;background:linear-gradient(160deg,#f0faff,#fff);border-bottom:1px solid #eef2f5;flex-shrink:0}
 .biz-logo{width:88px;height:88px;border-radius:50%;border:3px solid var(--p);margin:0 auto 0.9rem;display:flex;align-items:center;justify-content:center;font-size:2.2rem;overflow:hidden;background:rgba(43,170,204,0.1)}
 .biz-logo img{width:100%;height:100%;object-fit:contain}
@@ -19,14 +20,14 @@ body{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem 1.5
 .biz-meta{margin-top:0.9rem;display:flex;flex-direction:column;gap:0.3rem}
 .mr{font-size:0.74rem;color:var(--muted);display:flex;align-items:center;justify-content:center;gap:0.4rem}
 .mr a{color:var(--p);text-decoration:none;font-weight:500}
-.messages{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.65rem;background:#f7fafc;min-height:300px;max-height:380px}
+.messages{overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:0.65rem;background:var(--chat-bg);flex:1;min-height:0}
 .messages::-webkit-scrollbar{width:4px}.messages::-webkit-scrollbar-thumb{background:#dde3e8;border-radius:99px}
 .msg{max-width:82%;display:flex;flex-direction:column;gap:0.2rem;animation:fu 0.2s ease}
 @keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .msg.bot{align-self:flex-start}.msg.user{align-self:flex-end}
 .bubble{padding:0.65rem 0.9rem;border-radius:14px;font-size:0.82rem;line-height:1.55;white-space:pre-wrap}
-.msg.bot .bubble{background:#fff;border:1px solid #e5eaee;border-bottom-left-radius:4px}
-.msg.user .bubble{background:var(--p);color:#fff;border-bottom-right-radius:4px}
+.msg.bot .bubble{background:var(--bot-bg);color:var(--bot-text);border:1px solid #e5eaee;border-bottom-left-radius:4px}
+.msg.user .bubble{background:var(--p);color:var(--user-text);border-bottom-right-radius:4px}
 .ts{font-size:0.62rem;color:var(--muted);padding:0 0.2rem}.msg.user .ts{text-align:right}
 .typing{display:flex;align-items:center;gap:4px;padding:0.65rem 0.9rem;background:#fff;border:1px solid #e5eaee;border-radius:14px;border-bottom-left-radius:4px;width:fit-content;align-self:flex-start}
 .td{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:tb 1.2s infinite ease-in-out}
@@ -60,7 +61,7 @@ body{display:flex;flex-direction:column;align-items:center;padding:2rem 1rem 1.5
   </div>
 </div>
 <div class="powered">Powered by <strong>Dogo Digital 24</strong></div>
-<script type="application/json" id="chatbot-config">{"key":"QUl6YVN5QTVLaTR4aGNIc0JLa2FfUzdleHYydENTSFB4dmJfM1R3","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","sp":"Respondé siempre en español, de forma amigable y concisa. Usá solo la información del documento proporcionado.","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec"}</script>
+<script type="application/json" id="chatbot-config">{"key":"QUl6YVN5QTVLaTR4aGNIc0JLa2FfUzdleHYydENTSFB4dmJfM1R3","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","sp":"Respondé siempre en español, de forma amigable y concisa. Usá solo la información del documento proporcionado.","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec","clr":{"bg":"#93979a","chatBg":"#f7fafc","userBg":"#2baacc","userText":"#ffffff","botBg":"#426880","botText":"#f7f9fc"}}</script>
 <script>
 var _C=JSON.parse(document.getElementById('chatbot-config').textContent);
 var GKEY=decodeURIComponent(escape(atob(_C.key)));
@@ -83,7 +84,7 @@ async function loadDoc(){
 
 function buildSystem(){
   var contact=_C.contact?' DATOS DE CONTACTO: '+_C.contact:'';
-  var instr=' IMPORTANTE: Si no tenés la información exacta, NO menciones documentos. Ofrecé los datos de contacto del negocio. FORMATO: Respondé siempre en texto plano sin markdown. No uses asteriscos, no uses negritas, no uses listas con guiones ni asteriscos. Podés usar emojis. Usá saltos de línea simples para separar ideas.';
+  var instr=' IMPORTANTE: Si no tenés la información exacta, NO menciones documentos. Ofrecé los datos de contacto del negocio. FORMATO: Respondé siempre en texto plano sin markdown. No uses asteriscos ni guiones para listas. Cuando listes ítems o servicios usá bullets con el símbolo • (por ejemplo: • Servicio 1). Podés usar emojis. Usá saltos de línea simples para separar ideas. NO termines tus respuestas con preguntas como ¿Te gustaría saber más? ni ¿Hay algo más en lo que pueda ayudarte?. Sé conciso y directo.';
   var base=_C.sp+contact+instr;
   if(docContent)base=base+' INFORMACIÓN DEL NEGOCIO: '+docContent;
   return base;
@@ -150,7 +151,6 @@ async function doSend(txt){
   while(!done){
     try{
       if(attempt>0){
-        updateTyping('Reintentando ('+attempt+'/'+(maxRetries-1)+')...');
         await new Promise(function(res){setTimeout(res,attempt*2000);});
       }
       var r=await fetch(
@@ -165,12 +165,12 @@ async function doSend(txt){
       rmTyp();
       if(d.error){
         var _phone='',_email='';
-        if(_C.contact){var _cl=_C.contact.split('\n');_cl.forEach(function(l){if(l.indexOf('Teléfono')>-1||l.indexOf('Tel')>-1)_phone=l.replace(/.*:/,'').trim();if(l.indexOf('Email')>-1||l.indexOf('email')>-1)_email=l.replace(/.*:/,'').trim();});}
-        var _fb='En este caso, puede ayudarte mejor nuestro equipo. Si deseas obtener más detalles sobre la modalidad de trabajo, te sugiero que te pongas en contacto directamente con '+_C.bizName+'. Aquí tienes sus datos:\n\n';
-        if(_phone)_fb+='📞 Teléfono: '+_phone+'\n';
-        if(_email)_fb+='✉️ Email: '+_email+'\n';
-        if(!_phone&&!_email&&_C.contact)_fb+=_C.contact+'\n';
-        _fb+='\n¡Espero que te sea útil!';
+        if(_C.contact){var _cl=_C.contact.split(String.fromCharCode(10));_cl.forEach(function(l){if(l.indexOf('Tel')>-1)_phone=l.replace(/.*:/,'').trim();if(l.indexOf('Email')>-1||l.indexOf('email')>-1)_email=l.replace(/.*:/,'').trim();});}
+        var _fb='En este caso, puede ayudarte mejor nuestro equipo. Si deseas obtener más detalles sobre la modalidad de trabajo, te sugiero que te pongas en contacto directamente con '+_C.bizName+'. Aquí tienes sus datos:';
+        if(_phone)_fb+=' 📞 Teléfono: '+_phone;
+        if(_email)_fb+=' ✉️ Email: '+_email;
+        if(!_phone&&!_email&&_C.contact)_fb+=' '+_C.contact;
+        _fb+=' ¡Espero que te sea útil!';
         logUnanswered(txt);
         addMsg('bot',_fb);
       }else{
@@ -202,16 +202,13 @@ function clearTimers(){
 
 function scheduleFollowUp(){
   clearTimers();
-  followUpTimer=setTimeout(function(){
-    addMsg('bot','¿Hay algo más en lo que pueda ayudarte? 😊');
-    closeTimer=setTimeout(function(){
-      addMsg('bot','Fue un placer ayudarte. ¡Hasta pronto! 👋');
-      document.getElementById('inp').disabled=true;
-      document.getElementById('sendbtn').disabled=true;
-      var row=document.getElementById('inp').closest('.input-row');
-      if(row)row.style.opacity='0.4';
-    },60000);
-  },8000);
+  closeTimer=setTimeout(function(){
+    addMsg('bot','Fue un placer ayudarte. ¡Hasta pronto! 👋');
+    document.getElementById('inp').disabled=true;
+    document.getElementById('sendbtn').disabled=true;
+    var row=document.getElementById('inp').closest('.input-row');
+    if(row)row.style.opacity='0.4';
+  },120000);
 }
 
 async function logUnanswered(question){
@@ -221,7 +218,7 @@ async function logUnanswered(question){
     var fecha=now.toLocaleDateString('es-AR');
     var hora=now.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
     var params='fecha='+encodeURIComponent(fecha)+'&hora='+encodeURIComponent(hora)+'&cliente='+encodeURIComponent(_C.bizName)+'&pregunta='+encodeURIComponent(question);
-    await fetch(_C.sheets+'?'+params,{method:'GET',mode:'no-cors'});
+    await fetch(_C.sheets+'?'+params,{method:'GET',mode:'no-cors'}).catch(function(){});
   }catch(e){console.warn('Sheets log failed:',e.message);}
 }
 
