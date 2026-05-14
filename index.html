@@ -167,7 +167,7 @@ async function doSend(txt){
         await new Promise(function(res){setTimeout(res,attempt*3000);});
       }
       var r=await fetch(
-        'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key='+GKEY,
+        'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key='+GKEY,
         {method:'POST',headers:{'Content-Type':'application/json'},
          body:JSON.stringify({contents:allContents,generationConfig:{maxOutputTokens:800,temperature:0.7}})}
       );
