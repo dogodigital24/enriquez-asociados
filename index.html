@@ -211,15 +211,24 @@ function scheduleFollowUp(){
   },120000);
 }
 
-async function logUnanswered(question){
+function logUnanswered(question){
   if(!_C.sheets)return;
   try{
     var now=new Date();
     var fecha=now.toLocaleDateString('es-AR');
     var hora=now.toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});
-    var params='fecha='+encodeURIComponent(fecha)+'&hora='+encodeURIComponent(hora)+'&cliente='+encodeURIComponent(_C.bizName)+'&pregunta='+encodeURIComponent(question);
-    await fetch(_C.sheets+'?'+params,{method:'GET',mode:'no-cors'}).catch(function(){});
-  }catch(e){console.warn('Sheets log failed:',e.message);}
+    var params='fecha='+encodeURIComponent(fecha)
+              +'&hora='+encodeURIComponent(hora)
+              +'&cliente='+encodeURIComponent(_C.bizName)
+              +'&pregunta='+encodeURIComponent(question);
+    var url=_C.sheets+'?'+params;
+    console.log('Logging unanswered question to:', url);
+    // Use Image beacon - guaranteed cross-origin, no CORS issues
+    var img=new Image();
+    img.onload=function(){ console.log('Log sent OK'); };
+    img.onerror=function(){ console.warn('Log request failed (image)'); };
+    img.src=url;
+  }catch(e){console.warn('Sheets log error:',e.message);}
 }
 
 loadDoc().then(function(){
