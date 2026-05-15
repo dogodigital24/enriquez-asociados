@@ -9,9 +9,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--p:#2baacc;--bg:#c5d2d8;--chat-bg:#f7fafc;--bot-bg:#3e5598;--bot-text:#f4f5f6;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
 html,body{min-height:100%;font-family:Inter,sans-serif;background:var(--bg);color:var(--dark)}
-html,body{height:100%;overflow:hidden}
-body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;height:100%;overflow:hidden}
-.card{width:100%;max-width:440px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);display:flex;flex-direction:column;height:100%}
+html,body{height:100%;height:100dvh}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;height:100%;height:100dvh;overflow:hidden}
+.card{width:100%;max-width:440px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);display:flex;flex-direction:column;flex:1;min-height:0;max-height:100%}
 .hdr{padding:0.85rem 1.25rem 0.85rem;text-align:center;background:linear-gradient(160deg,#f0faff,#fff);border-bottom:1px solid #eef2f5;flex-shrink:0}
 .biz-logo{width:56px;height:56px;border-radius:50%;border:2px solid var(--p);margin:0 auto 0.5rem;display:flex;align-items:center;justify-content:center;font-size:1.5rem;overflow:hidden;background:rgba(43,170,204,0.1)}
 .biz-logo img{width:100%;height:100%;object-fit:contain}
