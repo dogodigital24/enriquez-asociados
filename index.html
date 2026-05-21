@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--p:#2baacc;--bg:#d2d8da;--chat-bg:#f7fafc;--bot-bg:#3f5983;--bot-text:#f7f9fc;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
+:root{--p:#2baacc;--bg:#d0d1d2;--chat-bg:#f7fafc;--bot-bg:#3d528f;--bot-text:#f5f7fa;--user-text:#ffffff;--dark:#2D3440;--muted:#8A95A3}
 html,body{height:100dvh;font-family:Inter,sans-serif;background:var(--bg);color:var(--dark);overflow:hidden}
 body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem}
 .card{width:100%;max-width:440px;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,0.1);display:flex;flex-direction:column;height:100dvh;max-height:100dvh}
@@ -60,7 +60,7 @@ body{display:flex;flex-direction:column;align-items:center;justify-content:cente
   </div>
 </div>
 <div class="powered">Powered by <strong>Dogo Digital 24</strong></div>
-<script type="application/json" id="chatbot-config">{"key":"c2stcHJvai1tcTU2NlRqVS1Oa29YTzFTNlE2a2RTbkFOVVZXTHpLWE95VGVyNU5LU3FidUhTc2hjbDVvaWl6N3E4T0NnRTdHSDFLUEVGZW5CcVQzQmxia0ZKb0N1bzFlSlAyQ21MdFJyQUtQRzZFZjVxYkpJWlZCcFJjUHVFb2xaR3V2Mjk5LWRzd1NRUVJ6NURMMWhwT1hnM0pqSzN0NmZOQUE=","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","lang":"Spanish","sp":"","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec","clr":{"bg":"#d2d8da","chatBg":"#f7fafc","userBg":"#2baacc","userText":"#ffffff","botBg":"#3f5983","botText":"#f7f9fc"}}</script>
+<script type="application/json" id="chatbot-config">{"key":"c2stcHJvai1tcTU2NlRqVS1Oa29YTzFTNlE2a2RTbkFOVVZXTHpLWE95VGVyNU5LU3FidUhTc2hjbDVvaWl6N3E4T0NnRTdHSDFLUEVGZW5CcVQzQmxia0ZKb0N1bzFlSlAyQ21MdFJyQUtQRzZFZjVxYkpJWlZCcFJjUHVFb2xaR3V2Mjk5LWRzd1NRUVJ6NURMMWhwT1hnM0pqSzN0NmZOQUE=","doc":"MTZ4VW5qNFRSZl9oZmd5TWUteFQwWGtZbGlrdDl5VnpGRHF2STUwcmM4LWM=","lang":"Spanish","sp":"","welcome":"¡Hola! 👋 Soy el asistente virtual de Enríquez y Asociados. ¿En qué puedo ayudarte hoy?","qr":"","contact":"Teléfono: +54 11 5410-7890\nEmail: consultora@enriquezyasociados.org\nSitio web: https://www.enriquezyasociados.org/","bizName":"Enríquez y Asociados","sheets":"https://script.google.com/macros/s/AKfycbwK0V8pVYfKFT6CkSEwJi6BUj7fsqKf8eQ99O6SQjKATvATkGZaH8fNa2_ZiZLrkHEC/exec","clr":{"bg":"#d0d1d2","chatBg":"#f7fafc","userBg":"#2baacc","userText":"#ffffff","botBg":"#3d528f","botText":"#f5f7fa"}}</script>
 <script>
 var _C=JSON.parse(document.getElementById('chatbot-config').textContent);
 var GKEY=decodeURIComponent(escape(atob(_C.key)));
@@ -103,6 +103,8 @@ function buildSystem(){
   ].join('\n');
   return prompt;
 }
+
+function now(){return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'});}
 
 function addMsg(role,text){
   hist.push({role:role,content:text});
